@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <div>
+            <a class="story-img" href="#">
+                <img src="http://placehold.it/100"
+                     style="width:100px; height: 100px; background-color: #838367; color: #ffffff;" class="img-circle">
+            </a>
+        </div>
+        <div>
+            <h3>{{ post.title }}</h3>
+            <div>
+                <div>
+                    {% if post.image %}
+                        <img src="/media/{{ post.image }}">
+                    {% endif %}
+                    <p>{{ post.content|linebreaks }}</p>
+                    <p>
+                        <button class="btn btn-default" onclick="location.href='/blog'">Back To Blog</button>
+                        <button class="btn btn-default" onclick="location.href='edit'">Edit</button>
+                    </p>
+                    <p>{{ post.published_date }} | Views {{ post.views }}</p>
+                    {% load disqus_tags %}
+                    {% set_disqus_title post.title %}
+                    {% disqus_show_comments %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

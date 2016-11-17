@@ -15,7 +15,7 @@ def register(request):
         if form.is_valid():
             form.save()
 
-            user = auth.authenticate(email=request.POST.get('email'), password=request.POST.get('password1'))
+            user = auth.authenticate(username=request.POST.get('username'), password=request.POST.get('password1'))
 
             if user:
                 messages.success(request, "You have successfully registered")
@@ -40,17 +40,15 @@ def profile(request):
 
 def login(request):
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
+        form = UserLoginForm(request.POST)
         if form.is_valid():
-            form.save()
-
-            user = auth.authenticate(email=request.POST.get('email'), password=request.POST.get('password'))
+            user = auth.authenticate(username=request.POST.get('username_or_email'),
+                                     password=request.POST.get('password'))
 
             if user is not None:
                 auth.login(request, user)
                 messages.error(request, "You have successfully logged in")
                 return redirect(reverse('profile'))
-
             else:
                 form.add_error(None, "Your email or password was not recognised")
 
@@ -59,7 +57,6 @@ def login(request):
 
     args = {'form': form}
     args.update(csrf(request))
-
     return render(request, 'login.html', args)
 
 

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for post in posts %}
+        <div>
+            <hr>
+            <div>
+                <a class="story-img" href="#">
+                    <img src="http://placehold.it/100" style="width:100px; height: 100px; background-color: #838367; color: #ffffff;" class="img-circle">
+                </a>
+            </div>
+            <div>
+                <h3>{{ post.title }}</h3>
+                <div>
+                    <div>
+                        <p>{{ post.content|truncatewords:30 }}</p>
+                        <p><button class="btn btn-default" onclick="location.href='{{ post.id }}'">Read More</button></p>
+                        <p><button class="btn btn-default" onclick="location.href='{% url 'new_post' %}'">New Post</button></p>
+
+                        <p>{{ post.published_date }} | <strong>Views</strong> {{ post.views }} | <strong>Tag</strong> {{ post.tag }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

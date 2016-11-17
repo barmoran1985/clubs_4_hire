@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
+    'django.contrib.sites',
+    'disqus',
     'hello',
     'accounts',
-    'django_forms_bootstrap'
+    'django_forms_bootstrap',
+    'rental',
+    'products'
 ]
 
 MIDDLEWARE = [
@@ -71,7 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'clubs_4_hire.wsgi.application'
-
+DISQUS_WEBSITE_SHORTNAME = 'BootcampBlog'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -82,6 +87,13 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+SITE_ID = 1
+
+SITE_URL = 'HTTP://127.0.0.1:8000'
+PAYPAL_NOTIFY_URL = 'http://127.0.0.1/JD8FJB88ashssa8HJHS&^&**HJHJgchgkj/'
+PAYPAL_RECEIVER_EMAIL = 'bar-facilitator@gmail.com'
 
 
 # Password validation
@@ -121,10 +133,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
-AUTH_USER_MODEL = 'accounts.User'
 
-AUTHENTICATION_BACKENDS = (
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backends.EmailAuth'
-)
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
