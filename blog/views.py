@@ -29,17 +29,18 @@ def post_details(request, id):
     return render(request, "postdetail.html", {'post': post})
 
 
-# def top_posts(request):
-#     """
-#     # Get a list of posts and order them
-#     # by the number of views. Only return
-#     # the top 5 results. Render it to blogposts.html
-#
-#     :param request:
-#     :return:
-#     """
-#     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-views')[:2]
-#     return render(request, "blogposts.html", {'posts': posts})
+def top_post1(request):
+    """
+    # Get a list of posts and order them
+    # by the number of views. Only return
+    # the top results. Render it to blogposts.html
+
+    :param request:
+    :return:
+    """
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-views')[:1]
+    return render(request, "blogposts.html", {'posts': posts})
+
 
 def new_post(request):
     if request.method == "POST":

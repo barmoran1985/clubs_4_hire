@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Thanks for buying my item :)</h1>
-
-    <h2>POST</h2>
-    {{ post }}
-
-    <h2>GET</h2>
-    {{ get }}
+    <div>
+        <h1>Thank you {{ user.first_name }} {{ user.last_name }}</h1>
+        <h2>Your payment was successful</h2>
+    </div>
+    <div>
+        <p>Item: {{ post.item_name }}</p>
+        <p>Total Payment: €{{ post.payment_gross }} excl. €{{ post.payment_fee }} payment fee</p>
+        <p>Date of Payment: {{ post.payment_date }}</p>
+        <p>A confirmation will be sent to {{ user.email }}</p>
+    </div>
 {% endblock %}

@@ -5,6 +5,14 @@ from django.core.exceptions import ValidationError
 
 
 class UserRegistrationForm(UserCreationForm):
+
+    first_name = forms.CharField(
+        label='First Name'
+    )
+
+    last_name = forms.CharField(
+        label='Last Name'
+    )
     password1 = forms.CharField(
         label='Password',
         widget=forms.PasswordInput
@@ -17,7 +25,8 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+
+        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
     def clean_password2(self):
         password1 = self.cleaned_data.get('password1')
@@ -31,7 +40,6 @@ class UserRegistrationForm(UserCreationForm):
 
     def save(self, commit=True):
         instance = super(UserRegistrationForm, self).save(commit=False)
-
 
         if commit:
             instance.save()

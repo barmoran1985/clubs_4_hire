@@ -13,11 +13,13 @@ def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_user = form.save(commit=False)
+            new_user.first_name = new_user.first_name.capitalize()
+            new_user.last_name = new_user.last_name.capitalize()
+            new_user.save()
+            auth_user = auth.authenticate(username=request.POST.get('username'), password=request.POST.get('password1'))
 
-            user = auth.authenticate(username=request.POST.get('username'), password=request.POST.get('password1'))
-
-            if user:
+            if auth_user:
                 messages.success(request, "You have successfully registered")
                 return redirect(reverse('profile'))
 

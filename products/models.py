@@ -10,8 +10,11 @@ from paypal.standard.forms import PayPalPaymentsForm
 class Product(models.Model):
 
     name = models.CharField(max_length=254, default='')
+    left = models.BooleanField(default=False)
+    ladies = models.BooleanField(default=False)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    image = models.ImageField(upload_to="images", default='../static/img/no_product.png')
 
     @property
     def paypal_form(self):
@@ -30,5 +33,4 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
-
 

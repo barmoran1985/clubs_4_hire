@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Purchase</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.paypal_form.sandbox }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+
+
+
+    <div class="row">
+    {% for product in products %}
+        <div style="margin-bottom: 10px;" class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img style= "padding-top: 20px;height: 150px;" src="{{ MEDIA_URL }}{{ product.image }}">
+                <div class="caption" style="height: 200px;">
+                    <h4 class="pull-right">€{{ product.price }}</h4>
+                    <h4><a href="{% url 'details' product.id %}">{{ product.name }}</a>
+                    </h4>
+                    {#<p>{{ product.description }}</p>#}
+                    <a href="{% url 'details' product.id %}">Details</a>
+                    <p>{{ product.paypal_form.sandbox }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}

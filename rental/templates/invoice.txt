@@ -1,0 +1,4 @@
+Your Invoice/n
+Hi {{ user.first_name }}/n
+You ordered {{ product.name }} ID#{{ product.id }}./n
+Total Cost: {{ product.price }}/n

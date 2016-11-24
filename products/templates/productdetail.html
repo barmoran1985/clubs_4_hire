@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+{% block head_js %}{% endblock %}
+    <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8" >
+        <div style="align-content: center;">
+        </div>
+        <div">
+            <h3>{{ product.name }}</h3>
+            <div>
+                <div>
+                    <img style= "padding-top: 20px;height: 500px;" src="{{ MEDIA_URL }}{{ product.image }}">
+                    <p>{{ product.description }}</p>
+                    <h2>€{{ product.price }}</h2>
+                    <p>{{ product.paypal_form.sandbox }}</p>
+                    <button class="btn btn-default" onclick="location.href='/rental/'">Back To Products</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+    </div>
+{% endblock content %}

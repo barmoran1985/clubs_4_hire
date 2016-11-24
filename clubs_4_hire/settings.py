@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'accounts',
     'django_forms_bootstrap',
     'rental',
-    'products'
+    'products',
+    'django_gravatar',
+    'basket'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -114,6 +117,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Stripe environment variables
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE', 'pk_test_YA8JFRepTJwf81zY05ZLQQ9p')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET', 'sk_test_nhivRzevNUTLn2OVqcFBTdi9')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
