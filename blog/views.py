@@ -39,7 +39,7 @@ def top_post1(request):
     :return:
     """
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-views')[:1]
-    return render(request, "blogposts.html", {'posts': posts})
+    return render(request, "indexpost.html", {'post': posts[0]})
 
 
 def new_post(request):

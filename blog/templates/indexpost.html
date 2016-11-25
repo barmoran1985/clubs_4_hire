@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% block head_js %}{% endblock %}
+    <div style="align-content: center;">
+        <div style="align-content: center;">
+        </div>
+        <div>
+            <h3>{{ post.title }}</h3>
+            <div>
+                <div>
+                    {% if post.image %}
+                        <img src="/media/{{ post.image }}" style="width:500px; background-color: #838367; color: #ffffff;" >
+                    {% endif %}
+                    <p>{{ post.content|linebreaks }}</p>
+
+                    <p>{{ post.published_date }}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -23,6 +23,7 @@ from django.conf.urls import url, include
 from rental import views as paypal_views
 from blog import views as blog_views
 from products import urls as products_urls
+from cart import urls as cart_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,6 +32,7 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     url(r'', include(accounts_urls)),
     url(r'^rental/', include(products_urls)),
+    url(r'cart/', include(cart_urls)),
     url(r'^paypal-return', paypal_views.paypal_return, name='return'),
     url(r'^paypal-cancel', paypal_views.paypal_cancel, name='cancel')
 ]

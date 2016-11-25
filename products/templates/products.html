@@ -14,10 +14,12 @@
                     </h4>
                     {#<p>{{ product.description }}</p>#}
                     <a href="{% url 'details' product.id %}">Details</a>
+                    <a href="{% url 'add_to_cart' product.id %}")>Add To Cart</a>
                     <p>{{ product.paypal_form.sandbox }}</p>
                 </div>
             </div>
         </div>
     {% endfor %}
     </div>
+
 {% endblock %}

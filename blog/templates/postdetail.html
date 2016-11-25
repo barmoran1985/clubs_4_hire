@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load gravatar %}
 {% block content %}
 {% block head_js %}{% endblock %}
     <div style="align-content: center;">
         <div style="align-content: center;">
             <a class="story-img" href="#">
-                <img src="http://placehold.it/100"
+                <img src="{% gravatar_url post.author.email 150 %}"
                      style="width:100px; height: 100px; background-color: #838367; color: #ffffff;" class="img-circle">
             </a>
         </div>
